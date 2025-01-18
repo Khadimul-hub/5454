@@ -1,0 +1,2744 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>my-family-chart</title>
+  <script src="https://unpkg.com/d3@6"></script>
+  <script type="module" src="https://unpkg.com/family-chart@0.2.1"></script>
+  <link rel="stylesheet" href="https://unpkg.com/family-chart@0.2.1/dist/styles/family-chart.css">
+</head>
+<body>
+  <div id="FamilyChart" class="f3" style="width:100%;height:900px;margin:auto;background-color:rgb(33,33,33);color:#fff;"></div>
+  <script type="module">
+    
+    create(data())
+
+    function create(data) {
+      const f3Chart = f3.createChart('#FamilyChart', data)
+        .setTransitionTime(1000)
+        .setCardXSpacing(400)
+        .setCardYSpacing(270)
+        .setOrientationVertical()
+        .setSingleParentEmptyCard(true, {label: 'ADD'})
+    
+      const f3Card = f3Chart.setCard(f3.CardHtml)
+        .setCardDisplay([["name","avatar"],["birth year","death year"],["phone"]])
+        .setCardDim({"width":295,"img_width":85,"img_height":90,"img_x":-2})
+        .setMiniTree(true)
+        .setStyle('imageRect')
+        .setOnHoverPathToMain()
+    
+      
+      const f3EditTree = f3Chart.editTree()
+        .fixed(true)
+        .setFields(["name","avatar","birth year","death year","gender","occupation","phone","email","address","notes"])
+        .setEditFirst(true)
+      
+      f3EditTree.setEdit()
+      
+      f3Card.setOnCardClick((e, d) => {
+        f3EditTree.open(d)
+        if (f3EditTree.isAddingRelative()) return
+        f3Card.onCardClickDefault(e, d)
+      })
+    
+      f3Chart.updateTree({initial: true})
+      f3EditTree.open(f3Chart.getMainDatum())
+    
+      f3Chart.updateTree({initial: true})
+    }
+    
+    function data() {
+      return [
+        {
+          "id": "0",
+          "rels": {
+            "children": [
+              "2621f322-ee2d-4b78-9c9e-9fecb73ac8ce"
+            ],
+            "spouses": []
+          },
+          "data": {
+            "name": "মো: আরাধান মন্ডল",
+            "birthday": "",
+            "avatar": "",
+            "gender": "M",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          }
+        },
+        {
+          "id": "2621f322-ee2d-4b78-9c9e-9fecb73ac8ce",
+          "data": {
+            "gender": "M",
+            "name": "মো: তরিপাত মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "0",
+            "children": [
+              "c981630d-c9c0-4b04-a6d5-f0a7abd2fec2",
+              "8c8baf15-43bd-4f3b-943f-379d8b450d98",
+              "496de3d4-8ac7-4c68-a6d9-4fc8e682860d",
+              "476e6789-4ab4-4481-9475-1b6a0caec6d3",
+              "14501f86-de3f-4770-889d-62890e633df1"
+            ],
+            "spouses": [
+              "1023ff2c-a8d5-405b-aaf4-d12c6ce2a817",
+              "49a8a002-85d6-4744-a91d-3f3386e42a3d"
+            ]
+          }
+        },
+        {
+          "id": "c981630d-c9c0-4b04-a6d5-f0a7abd2fec2",
+          "data": {
+            "gender": "M",
+            "name": "মো: ছেবারুদ্দিন মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "2621f322-ee2d-4b78-9c9e-9fecb73ac8ce",
+            "mother": "1023ff2c-a8d5-405b-aaf4-d12c6ce2a817",
+            "children": [
+              "988b2ea4-1ad0-4ae1-92b5-786e5484ea20",
+              "88b82aee-89e0-4945-8da3-58cb23f91974",
+              "94b1bece-1a98-43a2-aa21-90fc27cca97f",
+              "cff584c3-4b1e-444c-b205-f144ad7953b9",
+              "273eddf5-c421-4e64-91cb-26ef21b33c8f"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "1023ff2c-a8d5-405b-aaf4-d12c6ce2a817",
+          "data": {
+            "gender": "F",
+            "name": "ছোট",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "spouses": [
+              "2621f322-ee2d-4b78-9c9e-9fecb73ac8ce"
+            ],
+            "children": [
+              "c981630d-c9c0-4b04-a6d5-f0a7abd2fec2",
+              "8c8baf15-43bd-4f3b-943f-379d8b450d98",
+              "496de3d4-8ac7-4c68-a6d9-4fc8e682860d",
+              "476e6789-4ab4-4481-9475-1b6a0caec6d3"
+            ]
+          }
+        },
+        {
+          "id": "14501f86-de3f-4770-889d-62890e633df1",
+          "data": {
+            "gender": "M",
+            "name": "মো: ইলিম মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "2621f322-ee2d-4b78-9c9e-9fecb73ac8ce",
+            "mother": "49a8a002-85d6-4744-a91d-3f3386e42a3d",
+            "children": [
+              "cb760f39-4832-47ac-b376-54df859bc6db"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "49a8a002-85d6-4744-a91d-3f3386e42a3d",
+          "data": {
+            "gender": "F",
+            "name": "বড়",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "spouses": [
+              "2621f322-ee2d-4b78-9c9e-9fecb73ac8ce"
+            ],
+            "children": [
+              "14501f86-de3f-4770-889d-62890e633df1"
+            ]
+          }
+        },
+        {
+          "id": "8c8baf15-43bd-4f3b-943f-379d8b450d98",
+          "data": {
+            "gender": "M",
+            "name": "মো: আলাই মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "2621f322-ee2d-4b78-9c9e-9fecb73ac8ce",
+            "mother": "1023ff2c-a8d5-405b-aaf4-d12c6ce2a817",
+            "children": [
+              "a9a65e8d-102a-4496-9089-99a97db9787b",
+              "5ba192bc-f695-4db3-a0fb-ce501a73f1d9"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "496de3d4-8ac7-4c68-a6d9-4fc8e682860d",
+          "data": {
+            "gender": "M",
+            "name": "মো:  কছর উদ্দিন মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "2621f322-ee2d-4b78-9c9e-9fecb73ac8ce",
+            "mother": "1023ff2c-a8d5-405b-aaf4-d12c6ce2a817",
+            "children": [
+              "528e82d3-ceea-48c3-baa0-53e2650b3efa",
+              "362036ef-40ab-4296-bd98-ac4b66350d4a"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "476e6789-4ab4-4481-9475-1b6a0caec6d3",
+          "data": {
+            "gender": "M",
+            "name": "মো: বছর উদ্দিন মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "মৌলবী",
+            "phone": "",
+            "email": "",
+            "address": "কুয়াকুচি,গোয়ালপাড়া,আসাম, ভারত",
+            "notes": "মেয়ে ৭জন। নাম অজানা"
+          },
+          "rels": {
+            "father": "2621f322-ee2d-4b78-9c9e-9fecb73ac8ce",
+            "mother": "1023ff2c-a8d5-405b-aaf4-d12c6ce2a817"
+          }
+        },
+        {
+          "id": "988b2ea4-1ad0-4ae1-92b5-786e5484ea20",
+          "data": {
+            "gender": "M",
+            "name": "মো: জালাল মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "c981630d-c9c0-4b04-a6d5-f0a7abd2fec2",
+            "children": [
+              "5e37394c-c4d4-4060-ae21-68f3c6208ecf",
+              "b7566be9-50cf-44e9-9ae9-dc725b45626a"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "88b82aee-89e0-4945-8da3-58cb23f91974",
+          "data": {
+            "gender": "M",
+            "name": "মো: আকের মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "c981630d-c9c0-4b04-a6d5-f0a7abd2fec2",
+            "children": [
+              "91f5e664-0cdc-46e8-8820-78439f1164f6",
+              "6c10407a-617d-4488-950d-ecf4031361d9",
+              "b475a0c0-c814-47a7-a047-71e8748af25a",
+              "6905bf26-ac03-471b-a525-f12814a2e624",
+              "a9bd7d80-3e97-43d8-915f-24ee65710eac"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "94b1bece-1a98-43a2-aa21-90fc27cca97f",
+          "data": {
+            "gender": "M",
+            "name": "মো: বোরহান উদ্দিন মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "c981630d-c9c0-4b04-a6d5-f0a7abd2fec2",
+            "children": [
+              "451409ef-86a1-4eb8-a131-4f244c56f6fd",
+              "39829828-109a-479c-a0db-0b4b12d8d168",
+              "cce0548c-d762-4874-b667-8f6c0c721aaf",
+              "ef780d6e-ade0-4322-aea4-20e0c6dc8362",
+              "6a53769e-e5d7-4488-a63a-4fac18f945c6",
+              "b9e8012c-c2b8-46f5-b9d8-ad87e75c33be"
+            ],
+            "spouses": [
+              "d6e831ae-4005-4898-b94d-4eb5e4903765"
+            ]
+          }
+        },
+        {
+          "id": "cff584c3-4b1e-444c-b205-f144ad7953b9",
+          "data": {
+            "gender": "M",
+            "name": "মো: জাফর মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "c981630d-c9c0-4b04-a6d5-f0a7abd2fec2",
+            "children": [
+              "7580534f-7c82-4a75-b5a2-b48555c7ca48",
+              "558305d1-6874-4ff5-b35b-6769347e09c1",
+              "3f8b0e79-d6cb-4a59-bd42-969457b99dcd",
+              "5d1ff7bc-c836-41f8-8435-405e958995e3",
+              "146ef9c2-9604-4d0b-9798-6a36403b31bf",
+              "525b329e-ba8c-41e8-a174-a6924714f73b",
+              "4e3be7a4-3492-4f2e-9529-b6c968a17cc0",
+              "0505dbe4-9920-4545-8f0e-328ce683ceaa"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "273eddf5-c421-4e64-91cb-26ef21b33c8f",
+          "data": {
+            "gender": "M",
+            "name": "মো: সাকায়াত মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "c981630d-c9c0-4b04-a6d5-f0a7abd2fec2",
+            "children": [
+              "3fdcb58c-562f-444f-9100-8cc218bd5184",
+              "588b5da6-fc78-4458-a7f3-30204f2f1551",
+              "9cb16143-87a5-47a7-9656-8c08e40ff272"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "5e37394c-c4d4-4060-ae21-68f3c6208ecf",
+          "data": {
+            "gender": "F",
+            "name": "বেইলা",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "988b2ea4-1ad0-4ae1-92b5-786e5484ea20"
+          }
+        },
+        {
+          "id": "b7566be9-50cf-44e9-9ae9-dc725b45626a",
+          "data": {
+            "gender": "F",
+            "name": "বেলিমন",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "988b2ea4-1ad0-4ae1-92b5-786e5484ea20"
+          }
+        },
+        {
+          "id": "91f5e664-0cdc-46e8-8820-78439f1164f6",
+          "data": {
+            "gender": "M",
+            "name": "মো: ছাত্তার আলী মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "88b82aee-89e0-4945-8da3-58cb23f91974"
+          }
+        },
+        {
+          "id": "6c10407a-617d-4488-950d-ecf4031361d9",
+          "data": {
+            "gender": "M",
+            "name": "মো: কুদ্দুস আলী মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "88b82aee-89e0-4945-8da3-58cb23f91974"
+          }
+        },
+        {
+          "id": "b475a0c0-c814-47a7-a047-71e8748af25a",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: আকিতন নেছা",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "88b82aee-89e0-4945-8da3-58cb23f91974"
+          }
+        },
+        {
+          "id": "6905bf26-ac03-471b-a525-f12814a2e624",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: যাকাতন নেছা",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "88b82aee-89e0-4945-8da3-58cb23f91974"
+          }
+        },
+        {
+          "id": "a9bd7d80-3e97-43d8-915f-24ee65710eac",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: আনজুমান্নেছা",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "88b82aee-89e0-4945-8da3-58cb23f91974"
+          }
+        },
+        {
+          "id": "451409ef-86a1-4eb8-a131-4f244c56f6fd",
+          "data": {
+            "gender": "M",
+            "name": "মো: মেনহাজ আলী মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "94b1bece-1a98-43a2-aa21-90fc27cca97f",
+            "mother": "d6e831ae-4005-4898-b94d-4eb5e4903765"
+          }
+        },
+        {
+          "id": "d6e831ae-4005-4898-b94d-4eb5e4903765",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: হালিমা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "spouses": [
+              "94b1bece-1a98-43a2-aa21-90fc27cca97f"
+            ],
+            "children": [
+              "451409ef-86a1-4eb8-a131-4f244c56f6fd",
+              "39829828-109a-479c-a0db-0b4b12d8d168",
+              "cce0548c-d762-4874-b667-8f6c0c721aaf",
+              "ef780d6e-ade0-4322-aea4-20e0c6dc8362",
+              "6a53769e-e5d7-4488-a63a-4fac18f945c6",
+              "b9e8012c-c2b8-46f5-b9d8-ad87e75c33be"
+            ]
+          }
+        },
+        {
+          "id": "39829828-109a-479c-a0db-0b4b12d8d168",
+          "data": {
+            "gender": "M",
+            "name": "মো: দিনু মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "94b1bece-1a98-43a2-aa21-90fc27cca97f",
+            "mother": "d6e831ae-4005-4898-b94d-4eb5e4903765"
+          }
+        },
+        {
+          "id": "cce0548c-d762-4874-b667-8f6c0c721aaf",
+          "data": {
+            "gender": "M",
+            "name": "মো: শুক্কুর মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "94b1bece-1a98-43a2-aa21-90fc27cca97f",
+            "mother": "d6e831ae-4005-4898-b94d-4eb5e4903765"
+          }
+        },
+        {
+          "id": "ef780d6e-ade0-4322-aea4-20e0c6dc8362",
+          "data": {
+            "gender": "M",
+            "name": "মোহাম্মদ আলী মন্ডল",
+            "avatar": "",
+            "birth year": "1921",
+            "death year": "- 2022",
+            "occupation": "পল্লী চিকিৎসক",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "94b1bece-1a98-43a2-aa21-90fc27cca97f",
+            "mother": "d6e831ae-4005-4898-b94d-4eb5e4903765",
+            
+            "children": [
+              "8eeebdd3-f95e-4692-9b55-947f4b78aea0",
+              "c9069af2-a7db-4dc9-9136-cda377cfae23",
+              "f8647a60-d0b8-43bf-a967-05a9ceae157a",
+              "d472f86e-aed3-4621-be85-e20a966c8f3e",
+              "01cd7150-a5b9-4331-83a8-ea653bbaeea5",
+              "687ca659-17d2-468c-b804-ec4020e6906e",
+              "87a7134d-a026-4971-89f2-00b1715eab66",
+              "97f98bd3-9c26-41bf-a8cf-7410579daa52",
+              "04dd3e5e-7120-42d7-bafd-bb8353315a1e",
+              "0bd0754b-5deb-48e4-a3ce-d4f785447e23",
+              "22b9faef-73a0-4325-ae67-d3407ab67981",
+              "729b60f7-6b54-4498-bf84-41d2509024de",
+              "51edf9cb-328f-4587-b65a-0e90aede0698",
+              "a4fb9f2f-0666-4472-b6c2-c17a47019401"
+            ],
+            "spouses": [
+              "1d15a185-fbf9-4d06-af8e-2a6aeef82905"
+            ],
+          }
+        },
+        {
+          "id": "1d15a185-fbf9-4d06-af8e-2a6aeef82905",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: জবেদা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "spouses": [
+              "ef780d6e-ade0-4322-aea4-20e0c6dc8362"
+            ],
+            "children": [
+              "8eeebdd3-f95e-4692-9b55-947f4b78aea0",
+              "c9069af2-a7db-4dc9-9136-cda377cfae23",
+              "f8647a60-d0b8-43bf-a967-05a9ceae157a",
+              "d472f86e-aed3-4621-be85-e20a966c8f3e",
+              "01cd7150-a5b9-4331-83a8-ea653bbaeea5",
+              "687ca659-17d2-468c-b804-ec4020e6906e",
+              "87a7134d-a026-4971-89f2-00b1715eab66",
+              "97f98bd3-9c26-41bf-a8cf-7410579daa52",
+              "04dd3e5e-7120-42d7-bafd-bb8353315a1e",
+              "0bd0754b-5deb-48e4-a3ce-d4f785447e23",
+              "22b9faef-73a0-4325-ae67-d3407ab67981",
+              "729b60f7-6b54-4498-bf84-41d2509024de",
+              "51edf9cb-328f-4587-b65a-0e90aede0698",
+              "a4fb9f2f-0666-4472-b6c2-c17a47019401"
+            ]
+          }
+      },
+        {
+          "id": "8eeebdd3-f95e-4692-9b55-947f4b78aea0",
+          "data": {
+            "gender": "F",
+            "name": "মৃত মোছা: মনোয়ারা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father":  "ef780d6e-ade0-4322-aea4-20e0c6dc8362",
+            "mother": "1d15a185-fbf9-4d06-af8e-2a6aeef82905"
+          }
+        },
+        {
+          "id": "c9069af2-a7db-4dc9-9136-cda377cfae23",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: আনোয়ারা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "ef780d6e-ade0-4322-aea4-20e0c6dc8362",
+            "mother": "1d15a185-fbf9-4d06-af8e-2a6aeef82905"
+          }
+        },
+        {
+          "id": "f8647a60-d0b8-43bf-a967-05a9ceae157a",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: ফাতেমা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "ef780d6e-ade0-4322-aea4-20e0c6dc8362",
+            "mother": "1d15a185-fbf9-4d06-af8e-2a6aeef82905"
+          }
+        },
+        {
+          "id": "d472f86e-aed3-4621-be85-e20a966c8f3e",
+          "data": {
+            "gender": "M",
+            "name": "মো: জহুরুল ইসলাম বাবু",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "পল্লী চিকিৎসক",
+            "phone": "+880 1724-671977",
+            "death year": "",
+            "address": "আমিনগঞ্জ, কাকিনা, কালীগঞ্জ, লালমনিরহাট",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "ef780d6e-ade0-4322-aea4-20e0c6dc8362",
+            "mother": "1d15a185-fbf9-4d06-af8e-2a6aeef82905",
+            "spouses": [
+              "b13eb3f7-bee4-4438-bfb1-4fd822fcf2c4"
+            ],
+            "children": [
+              "5a27706b-0c1d-4cc1-bf53-9e83aba2bf65",
+              "4953be6d-6193-46f5-88b9-649f9375a513",
+              "96d99eb1-31d7-45e4-aca0-8c63c7aed07d"
+            ]
+          }
+        },
+        {
+          "id": "01cd7150-a5b9-4331-83a8-ea653bbaeea5",
+          "data": {
+            "gender": "M",
+            "name": "মো: নাজিমুল ইসলাম নজরুল",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "প্রধান শিক্ষক, বিনবিনা উচ্চ বিদ্যালয়",
+            "phone": "",
+            "death year": "",
+            "address": "তুষভান্ডার, কালীগঞ্জ, লালমনিরহাট",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "ef780d6e-ade0-4322-aea4-20e0c6dc8362",
+            "mother": "1d15a185-fbf9-4d06-af8e-2a6aeef82905",
+            "children": [
+              "c7f9bf40-1e2a-4530-85a7-61f9c18c44f8",
+              "5e691c38-fba3-4f42-8834-aae7526d04ba"
+            ],
+            "spouses": [
+              "fc273dea-a538-4f69-b3ab-6197da56e95d"
+            ]
+          }
+        },
+        {
+          "id": "687ca659-17d2-468c-b804-ec4020e6906e",
+          "data": {
+            "gender": "M",
+            "name": "মো: শাহ আলম",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "",
+            "phone": "",
+            "death year": "",
+            "address": "দিনাজপুর সদর",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "ef780d6e-ade0-4322-aea4-20e0c6dc8362",
+            "mother": "1d15a185-fbf9-4d06-af8e-2a6aeef82905",
+            "spouses": [
+              "3c44201b-fd6c-458e-8214-15f9ef102ba3"
+            ],
+            "children": [
+              "48a7911b-745b-44a6-91e2-0086dc02c27b"
+            ]
+          }
+        },
+        {
+          "id": "87a7134d-a026-4971-89f2-00b1715eab66",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: খুকু",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "গৃহিণী",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "ef780d6e-ade0-4322-aea4-20e0c6dc8362",
+            "mother": "1d15a185-fbf9-4d06-af8e-2a6aeef82905"
+          }
+        },
+        {
+          "id": "97f98bd3-9c26-41bf-a8cf-7410579daa52",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: ইসমোতারা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "গৃহিণী",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "ef780d6e-ade0-4322-aea4-20e0c6dc8362",
+            "mother": "1d15a185-fbf9-4d06-af8e-2a6aeef82905"
+          }
+        },
+        {
+          "id": "04dd3e5e-7120-42d7-bafd-bb8353315a1e",
+          "data": {
+            "gender": "M",
+            "name": "মো: সাজ্জাদুল আলম সিরাজুল",
+            "avatar": "",
+            "birth year": "1981",
+            "occupation": "পলী চিকিৎসক",
+            "phone": "+880 1714-945442",
+            "death year": "",
+            "address": "আইরমারীর চর, দৈ-খাওয়ার চর উলিপুর, কুড়িগ্রাম",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "ef780d6e-ade0-4322-aea4-20e0c6dc8362",
+            "mother": "1d15a185-fbf9-4d06-af8e-2a6aeef82905",
+            "spouses": [
+              "3fe8b8d9-12b7-4d23-b9d2-ea7aafdc00d6"
+            ],
+            "children": [
+              "1e40e9b6-23d9-4e32-8230-f248d343ca0b",
+              "54912d35-3462-4bb5-af4c-5d92dabaaf8c"
+            ]
+          }
+        },
+        {
+          "id": "0bd0754b-5deb-48e4-a3ce-d4f785447e23",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: সাবিনা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "গৃহিণী",
+            "phone": "",
+            "death year": "",
+            "address": "মোল্লারহাট, বেগমগঞ্জ, উলিপুর, কুড়িগ্রাম",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "ef780d6e-ade0-4322-aea4-20e0c6dc8362",
+            "mother": "1d15a185-fbf9-4d06-af8e-2a6aeef82905"
+          }
+        },
+        {
+          "id": "22b9faef-73a0-4325-ae67-d3407ab67981",
+          "data": {
+            "gender": "M",
+            "name": "মো: শহিদুল ইসলাম",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "সহকারী শিক্ষক,",
+            "phone": "",
+            "death year": "",
+            "address": "রৌমারি সদর, কুড়িগ্রাম",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "ef780d6e-ade0-4322-aea4-20e0c6dc8362",
+            "mother": "1d15a185-fbf9-4d06-af8e-2a6aeef82905",
+            "children": [
+              "ad8e8ef7-ebb5-4676-98e2-b67804487997"
+            ],
+            "spouses": [
+              "7e7f1571-3a0a-481d-8c5c-556a70830018"
+            ]
+          }
+        },
+        {
+          "id": "729b60f7-6b54-4498-bf84-41d2509024de",
+          "data": {
+            "gender": "M",
+            "name": "মো: মফিজুল ইসলাম",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "ef780d6e-ade0-4322-aea4-20e0c6dc8362",
+            "mother": "1d15a185-fbf9-4d06-af8e-2a6aeef82905",
+            "spouses": [
+              "72f73972-0473-43f4-9439-41472e810e65"
+            ],
+            "children": [
+              "8ae161e5-c374-4bbb-bec3-b621d470a234"
+            ]
+          }
+        },
+        {
+          "id": "51edf9cb-328f-4587-b65a-0e90aede0698",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: শাহিনা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "গৃহিণী",
+            "phone": "",
+            "death year": "",
+            "address": "রাজারহাট সদর, কুড়িগ্রাম",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "ef780d6e-ade0-4322-aea4-20e0c6dc8362",
+            "mother": "1d15a185-fbf9-4d06-af8e-2a6aeef82905"
+          }
+        },
+        {
+          "id": "a4fb9f2f-0666-4472-b6c2-c17a47019401",
+          "data": {
+            "gender": "F",
+            "name": "ইসরাত জাহান রুবি",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "গৃহিণী",
+            "phone": "",
+            "death year": "",
+            "address": "ফুলবাড়ী, ‍কুড়িগ্রাম",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "ef780d6e-ade0-4322-aea4-20e0c6dc8362",
+            "mother": "1d15a185-fbf9-4d06-af8e-2a6aeef82905"
+          }
+        },
+        {
+          "id": "b13eb3f7-bee4-4438-bfb1-4fd822fcf2c4",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: বিলকিছ বেগম",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "spouses": [
+              "d472f86e-aed3-4621-be85-e20a966c8f3e"
+            ],
+            "children": [
+              "5a27706b-0c1d-4cc1-bf53-9e83aba2bf65",
+              "4953be6d-6193-46f5-88b9-649f9375a513",
+              "96d99eb1-31d7-45e4-aca0-8c63c7aed07d"
+            ]
+          }
+        },
+        {
+          "id": "5a27706b-0c1d-4cc1-bf53-9e83aba2bf65",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: জান্নাত আরা ইসলাম জুই",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "",
+            "phone": "",
+            "death year": "",
+            "address": "আপুয়ারখাতা, পান্ডুল, উলিপুর, কুড়িগ্রাম",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "d472f86e-aed3-4621-be85-e20a966c8f3e",
+            "mother": "b13eb3f7-bee4-4438-bfb1-4fd822fcf2c4"
+          }
+        },
+        {
+          "id": "4953be6d-6193-46f5-88b9-649f9375a513",
+          "data": {
+            "gender": "M",
+            "name": "মো: জাহিদ হাসান ",
+            "avatar": "",
+            "birth year": "2000",
+            "occupation": "ছাত্র, চট্টগ্রাম বিশ্ববিদ্যালয়",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "d472f86e-aed3-4621-be85-e20a966c8f3e",
+            "mother": "b13eb3f7-bee4-4438-bfb1-4fd822fcf2c4"
+          }
+        },
+        {
+          "id": "96d99eb1-31d7-45e4-aca0-8c63c7aed07d",
+          "data": {
+            "gender": "M",
+            "name": "মো: জিন্নাত হাসান",
+            "avatar": "",
+            "birth year": "2002",
+            "occupation": "ছাত্র, উত্তরা বিশ্ববিদ্যালয়",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "d472f86e-aed3-4621-be85-e20a966c8f3e",
+            "mother": "b13eb3f7-bee4-4438-bfb1-4fd822fcf2c4"
+          }
+        },
+        {
+          "id": "c7f9bf40-1e2a-4530-85a7-61f9c18c44f8",
+          "data": {
+            "gender": "F",
+            "name": "নুসরাত জাহান নিপা",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "ছাত্রী",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "01cd7150-a5b9-4331-83a8-ea653bbaeea5",
+            "mother": "fc273dea-a538-4f69-b3ab-6197da56e95d"
+          }
+        },
+        {
+          "id": "fc273dea-a538-4f69-b3ab-6197da56e95d",
+          "data": {
+            "gender": "F",
+            "name": "মনোয়ারা",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "spouses": [
+              "01cd7150-a5b9-4331-83a8-ea653bbaeea5"
+            ],
+            "children": [
+              "c7f9bf40-1e2a-4530-85a7-61f9c18c44f8",
+              "5e691c38-fba3-4f42-8834-aae7526d04ba"
+            ]
+          }
+        },
+        {
+          "id": "5e691c38-fba3-4f42-8834-aae7526d04ba",
+          "data": {
+            "gender": "M",
+            "name": "মো: মমিনুল ইসলাম মনির",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "ছাত্র, কুড়িগ্রাম সরকারি পলিটেকনিক",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "01cd7150-a5b9-4331-83a8-ea653bbaeea5",
+            "mother": "fc273dea-a538-4f69-b3ab-6197da56e95d"
+          }
+        },
+        {
+          "id": "3c44201b-fd6c-458e-8214-15f9ef102ba3",
+          "data": {
+            "gender": "F",
+            "name": "রিনি বেগম",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "গৃহিণী",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "spouses": [
+              "687ca659-17d2-468c-b804-ec4020e6906e"
+            ],
+            "children": [
+              "48a7911b-745b-44a6-91e2-0086dc02c27b"
+            ]
+          }
+        },
+        {
+          "id": "48a7911b-745b-44a6-91e2-0086dc02c27b",
+          "data": {
+            "gender": "F",
+            "name": "স্নেহা",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "687ca659-17d2-468c-b804-ec4020e6906e",
+            "mother": "3c44201b-fd6c-458e-8214-15f9ef102ba3"
+          }
+        },
+        {
+          "id": "3fe8b8d9-12b7-4d23-b9d2-ea7aafdc00d6",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: খাদিজা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "গৃহিণী",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "spouses": [
+              "04dd3e5e-7120-42d7-bafd-bb8353315a1e"
+            ],
+            "children": [
+              "1e40e9b6-23d9-4e32-8230-f248d343ca0b",
+              "54912d35-3462-4bb5-af4c-5d92dabaaf8c"
+            ]
+          }
+        },
+        {
+          "id": "1e40e9b6-23d9-4e32-8230-f248d343ca0b",
+          "data": {
+            "gender": "M",
+            "name": "মো: খাদিমুল ইসলাম সৌরভ",
+            "avatar": "",
+            "birth year": "2002",
+            "occupation": "ছা্ত্র, কুড়িগ্রাম সরকারি কলেজ",
+            "phone": "+880 1518-730061",
+            "death year": "",
+            "address": "",
+            "email": "khadimulislam1562@gmail.com",
+            "notes": ""
+          },
+          "rels": {
+            "father": "04dd3e5e-7120-42d7-bafd-bb8353315a1e",
+            "mother": "3fe8b8d9-12b7-4d23-b9d2-ea7aafdc00d6"
+          }
+        },
+        {
+          "id": "54912d35-3462-4bb5-af4c-5d92dabaaf8c",
+          "data": {
+            "gender": "M",
+            "name": "মো: তাফছিরুল ইসলাম",
+            "avatar": "",
+            "birth year": "2010",
+            "occupation": "ছাত্র",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "04dd3e5e-7120-42d7-bafd-bb8353315a1e",
+            "mother": "3fe8b8d9-12b7-4d23-b9d2-ea7aafdc00d6"
+          }
+        },
+        {
+          "id": "72f73972-0473-43f4-9439-41472e810e65",
+          "data": {
+            "gender": "F",
+            "name": "আনজুমান আরা হাসি",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "spouses": [
+              "729b60f7-6b54-4498-bf84-41d2509024de"
+            ],
+            "children": [
+              "8ae161e5-c374-4bbb-bec3-b621d470a234"
+            ]
+          }
+        },
+        {
+          "id": "8ae161e5-c374-4bbb-bec3-b621d470a234",
+          "data": {
+            "gender": "M",
+            "name": "আব্দুল্লাহ আল আহনাফ",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "729b60f7-6b54-4498-bf84-41d2509024de",
+            "mother": "72f73972-0473-43f4-9439-41472e810e65"
+          }
+        },
+        {
+          "id": "ad8e8ef7-ebb5-4676-98e2-b67804487997",
+          "data": {
+            "gender": "M",
+            "name": "আদিল",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "22b9faef-73a0-4325-ae67-d3407ab67981",
+            "mother": "7e7f1571-3a0a-481d-8c5c-556a70830018"
+          }
+        },
+        {
+          "id": "7e7f1571-3a0a-481d-8c5c-556a70830018",
+          "data": {
+            "gender": "F",
+            "name": "চাচি",
+            "avatar": "",
+            "birth year": "",
+            "occupation": "",
+            "phone": "",
+            "death year": "",
+            "address": "",
+            "email": "",
+            "notes": ""
+          },
+          "rels": {
+            "spouses": [
+              "22b9faef-73a0-4325-ae67-d3407ab67981"
+            ],
+            "children": [
+              "ad8e8ef7-ebb5-4676-98e2-b67804487997"
+            ]
+          }
+        },      
+        {
+          "id": "6a53769e-e5d7-4488-a63a-4fac18f945c6",
+          "data": {
+            "gender": "M",
+            "name": "আহম্মদ মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "94b1bece-1a98-43a2-aa21-90fc27cca97f",
+            "mother": "d6e831ae-4005-4898-b94d-4eb5e4903765"
+          }
+        },
+        {
+          "id": "b9e8012c-c2b8-46f5-b9d8-ad87e75c33be",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: সোহাগী বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "94b1bece-1a98-43a2-aa21-90fc27cca97f",
+            "mother": "d6e831ae-4005-4898-b94d-4eb5e4903765"
+          }
+        },
+        {
+          "id": "7580534f-7c82-4a75-b5a2-b48555c7ca48",
+          "data": {
+            "gender": "M",
+            "name": "মো: কাদের আলী মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "cff584c3-4b1e-444c-b205-f144ad7953b9"
+          }
+        },
+        {
+          "id": "558305d1-6874-4ff5-b35b-6769347e09c1",
+          "data": {
+            "gender": "M",
+            "name": "মো: সামাদ আলী মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "cff584c3-4b1e-444c-b205-f144ad7953b9"
+          }
+        },
+        {
+          "id": "3f8b0e79-d6cb-4a59-bd42-969457b99dcd",
+          "data": {
+            "gender": "M",
+            "name": "মোহাম্মদ আলী মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "cff584c3-4b1e-444c-b205-f144ad7953b9"
+          }
+        },
+        {
+          "id": "5d1ff7bc-c836-41f8-8435-405e958995e3",
+          "data": {
+            "gender": "M",
+            "name": "মো: সুলতান আলি মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "cff584c3-4b1e-444c-b205-f144ad7953b9"
+          }
+        },
+        {
+          "id": "146ef9c2-9604-4d0b-9798-6a36403b31bf",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: মেহেরুন্নেছা",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "cff584c3-4b1e-444c-b205-f144ad7953b9"
+          }
+        },
+        {
+          "id": "525b329e-ba8c-41e8-a174-a6924714f73b",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: লালচান বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "cff584c3-4b1e-444c-b205-f144ad7953b9"
+          }
+        },
+        {
+          "id": "4e3be7a4-3492-4f2e-9529-b6c968a17cc0",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: জমিলা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "cff584c3-4b1e-444c-b205-f144ad7953b9"
+          }
+        },
+        {
+          "id": "0505dbe4-9920-4545-8f0e-328ce683ceaa",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: নুরজাহান বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "cff584c3-4b1e-444c-b205-f144ad7953b9",
+            
+          }
+        },
+        {
+          "id": "3fdcb58c-562f-444f-9100-8cc218bd5184",
+          "data": {
+            "gender": "M",
+            "name": "মো: ছোরমান আলী মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "273eddf5-c421-4e64-91cb-26ef21b33c8f",
+            "children": [
+            "6523d45f-b47d-4486-96db-c99ccddbaad6",
+            "312540ba-dd07-49b2-9f85-707eb0eea89c",
+            "0340643b-9309-464c-88bd-1842af263725",
+            "2ad75a49-e8f0-4d50-8b6c-60d86ee654d1",
+            "275d8409-360b-4859-93f2-4f2be64a84e9",
+            "7dd98a62-819a-45b2-ac9c-c752a0c4ad8a",
+            "256b2b49-0f8d-4381-a85a-50d24e5b18ef"
+          ],
+          "spouses": []
+          }
+          
+        },
+        {
+          "id": "6523d45f-b47d-4486-96db-c99ccddbaad6",
+          "data": {
+            "gender": "M",
+            "name": "মো: আব্দুর রাজ্জাক",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "আমিনগঞ্জ,কাকিনা,কালিগঞ্জ,লালমনিরহাট",
+            "notes": ""
+          },
+          "rels": {
+            "father": "3fdcb58c-562f-444f-9100-8cc218bd5184",
+            "children": [
+              "28784ca5-99c7-4b04-8266-bdee638318cc",
+              "d1f9d959-96cb-40a4-8dd4-e8e500226f7f",
+              "13c559b4-4e39-4b64-ac30-1c916582685b",
+              "298dad25-15ca-4533-aef4-7a010fc64bb0",
+              "1b902441-759f-4bc6-a29e-44bd544d4250",
+              "26ee1efa-75ae-4580-9d35-9e528150a3b1",
+              "f8636501-e7b2-48f8-b6ce-8865bcef7488"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "312540ba-dd07-49b2-9f85-707eb0eea89c",
+          "data": {
+            "gender": "M",
+            "name": "মো: আঃ ছালাম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "আমিনগঞ্জ,কাকিনা,কালিগঞ্জ,লালমনিরহাট",
+            "notes": ""
+          },
+          "rels": {
+            "father": "3fdcb58c-562f-444f-9100-8cc218bd5184",
+            "children": [
+              "54159fd3-d5c8-4864-9426-c217a49fcccd",
+              "51d8e3b6-2ba8-4627-ba67-ce3d460c0cb3",
+              "1a4894a7-153a-4a68-98a9-590b235bb683",
+              "9f5a5eae-97f2-458c-b379-2fefce72f4f7"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "0340643b-9309-464c-88bd-1842af263725",
+          "data": {
+            "gender": "M",
+            "name": "মো: সরবেশ আলী",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "3fdcb58c-562f-444f-9100-8cc218bd5184",
+            "children": [
+              "0b158532-c814-40b4-9fc3-90e00d28786a",
+              "dd2b10f7-7619-486e-bc66-a418994dcbf5",
+              "b42353e7-df02-491f-86df-641ac22ecb16"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "2ad75a49-e8f0-4d50-8b6c-60d86ee654d1",
+          "data": {
+            "gender": "M",
+            "name": "মো: খালেক আলী",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "3fdcb58c-562f-444f-9100-8cc218bd5184",
+            "children": [
+              "0d35812d-5142-44fa-bcbc-6a12fccfa044",
+              "37d1f982-a26c-4b21-bdab-279d48c94ebb",
+              "de1744d3-b95b-4f8f-bc36-06ad8ecc866c"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "275d8409-360b-4859-93f2-4f2be64a84e9",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: সালেহা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "3fdcb58c-562f-444f-9100-8cc218bd5184",
+          }
+        },
+        {
+          "id": "7dd98a62-819a-45b2-ac9c-c752a0c4ad8a",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: মরিয়ম বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "3fdcb58c-562f-444f-9100-8cc218bd5184",
+          }
+        },
+        {
+          "id": "256b2b49-0f8d-4381-a85a-50d24e5b18ef",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: শুরিয়া বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "3fdcb58c-562f-444f-9100-8cc218bd5184",
+          }
+        },
+        {
+          "id": "28784ca5-99c7-4b04-8266-bdee638318cc",
+          "data": {
+            "gender": "M",
+            "name": "মো: আবুল হোসেন",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "6523d45f-b47d-4486-96db-c99ccddbaad6"
+          }
+        },
+        {
+          "id": "d1f9d959-96cb-40a4-8dd4-e8e500226f7f",
+          "data": {
+            "gender": "M",
+            "name": "মো: সাইফুল ইসলাম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "দর্জি",
+            "phone": "",
+            "email": "",
+            "address": "আমিনগঞ্জ,কাকিনা,কালিগঞ্জ,লালমনিরহাট",
+            "notes": ""
+          },
+          "rels": {
+            "father": "6523d45f-b47d-4486-96db-c99ccddbaad6"
+          }
+        },
+        {
+          "id": "13c559b4-4e39-4b64-ac30-1c916582685b",
+          "data": {
+            "gender": "M",
+            "name": "মো: ইসমাইল হোসেন",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "আমিনগঞ্জ,কাকিনা,কালিগঞ্জ,লালমনিরহাট",
+            "notes": ""
+          },
+          "rels": {
+            "father": "6523d45f-b47d-4486-96db-c99ccddbaad6"
+          }
+        },
+        {
+          "id": "298dad25-15ca-4533-aef4-7a010fc64bb0",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: রেনু বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "6523d45f-b47d-4486-96db-c99ccddbaad6"
+          }
+        },
+        {
+          "id": "1b902441-759f-4bc6-a29e-44bd544d4250",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: জুলেখা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "6523d45f-b47d-4486-96db-c99ccddbaad6"
+          }
+        },
+        {
+          "id": "26ee1efa-75ae-4580-9d35-9e528150a3b1",
+          "data": {
+            "gender": "M",
+            "name": "মো: রাসেল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "6523d45f-b47d-4486-96db-c99ccddbaad6"
+          }
+        },
+        {
+          "id": "f8636501-e7b2-48f8-b6ce-8865bcef7488",
+          "data": {
+            "gender": "M",
+            "name": "মো: সোহাগ",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "6523d45f-b47d-4486-96db-c99ccddbaad6"
+          }
+        },
+        {
+          "id": "54159fd3-d5c8-4864-9426-c217a49fcccd",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: সালমিন বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "312540ba-dd07-49b2-9f85-707eb0eea89c"
+          }
+        },
+        {
+          "id": "51d8e3b6-2ba8-4627-ba67-ce3d460c0cb3",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: সালেহা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "312540ba-dd07-49b2-9f85-707eb0eea89c"
+          }
+        },
+        {
+          "id": "1a4894a7-153a-4a68-98a9-590b235bb683",
+          "data": {
+            "gender": "M",
+            "name": "মো: ফরিদ",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "312540ba-dd07-49b2-9f85-707eb0eea89c"
+          }
+        },
+        {
+          "id": "9f5a5eae-97f2-458c-b379-2fefce72f4f7",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: ফরিদা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "312540ba-dd07-49b2-9f85-707eb0eea89c"
+          }
+        },
+        {
+          "id": "0b158532-c814-40b4-9fc3-90e00d28786a",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: সরবানু বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "0340643b-9309-464c-88bd-1842af263725"
+          }
+        },
+        {
+          "id": "dd2b10f7-7619-486e-bc66-a418994dcbf5",
+          "data": {
+            "gender": "M",
+            "name": "মো: সহিদুল ইসলাম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "0340643b-9309-464c-88bd-1842af263725"
+          }
+        },
+        {
+          "id": "b42353e7-df02-491f-86df-641ac22ecb16",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: সাহিদা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "0340643b-9309-464c-88bd-1842af263725"
+          }
+        },
+        {
+          "id": "0d35812d-5142-44fa-bcbc-6a12fccfa044",
+          "data": {
+            "gender": "M",
+            "name": "মো: হাসেন",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "2ad75a49-e8f0-4d50-8b6c-60d86ee654d1"
+          }
+        },
+        {
+          "id": "37d1f982-a26c-4b21-bdab-279d48c94ebb",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: খালেদা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "2ad75a49-e8f0-4d50-8b6c-60d86ee654d1"
+          }
+        },
+        {
+          "id": "de1744d3-b95b-4f8f-bc36-06ad8ecc866c",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: খাদিজা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "2ad75a49-e8f0-4d50-8b6c-60d86ee654d1"
+          }
+        },
+        {
+          "id": "588b5da6-fc78-4458-a7f3-30204f2f1551",
+          "data": {
+            "gender": "M",
+            "name": "মো: কালু মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "273eddf5-c421-4e64-91cb-26ef21b33c8f"
+          }
+        },
+        {
+          "id": "9cb16143-87a5-47a7-9656-8c08e40ff272",
+          "data": {
+            "gender": "M",
+            "name": "মো: নালু মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "273eddf5-c421-4e64-91cb-26ef21b33c8f"
+          }
+        },
+        {
+          "id": "a9a65e8d-102a-4496-9089-99a97db9787b",
+          "data": {
+            "gender": "M",
+            "name": "মো: ফজর মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "8c8baf15-43bd-4f3b-943f-379d8b450d98",
+            "children": [
+              "c4c7dfaf-c352-4eb6-9463-9b416117bed6",
+              "04d46d25-07aa-43bc-859c-49e8e12ed773"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "5ba192bc-f695-4db3-a0fb-ce501a73f1d9",
+          "data": {
+            "gender": "M",
+            "name": "মো: বিদেশী মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "8c8baf15-43bd-4f3b-943f-379d8b450d98",
+            "children": [
+              "11d698a5-60b9-4a79-b664-64c7a973a1a8",
+              "bb2f44a8-c24a-45e9-8adc-4a5fe6db83fb",
+              "c7d7d494-6da9-4dd1-86d5-e242c8b0d54c",
+              "9a22736c-03c4-4d2d-aa2d-dad09fe0b9cd",
+              "ea6ec5d7-ba4d-40cc-be9b-d1bda5309cf6",
+              "a62186d6-408b-4fdd-97f2-112cbe43a4ec"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "c4c7dfaf-c352-4eb6-9463-9b416117bed6",
+          "data": {
+            "gender": "M",
+            "name": "মো: মগরোব আলী মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "a9a65e8d-102a-4496-9089-99a97db9787b"
+          }
+        },
+        {
+          "id": "04d46d25-07aa-43bc-859c-49e8e12ed773",
+          "data": {
+            "gender": "F",
+            "name": " মোছা: ফয়জান্নেছা",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "a9a65e8d-102a-4496-9089-99a97db9787b"
+          }
+        },
+        {
+          "id": "11d698a5-60b9-4a79-b664-64c7a973a1a8",
+          "data": {
+            "gender": "M",
+            "name": "মো: জুরান আলী মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "5ba192bc-f695-4db3-a0fb-ce501a73f1d9"
+          }
+        },
+        {
+          "id": "bb2f44a8-c24a-45e9-8adc-4a5fe6db83fb",
+          "data": {
+            "gender": "M",
+            "name": "মো: কুড়ান আলী মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "5ba192bc-f695-4db3-a0fb-ce501a73f1d9"
+          }
+        },
+        {
+          "id": "c7d7d494-6da9-4dd1-86d5-e242c8b0d54c",
+          "data": {
+            "gender": "M",
+            "name": "মো: মজিদ আলী মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "5ba192bc-f695-4db3-a0fb-ce501a73f1d9"
+          }
+        },
+        {
+          "id": "9a22736c-03c4-4d2d-aa2d-dad09fe0b9cd",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: গোলবানু",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "5ba192bc-f695-4db3-a0fb-ce501a73f1d9"
+          }
+        },
+        {
+          "id": "ea6ec5d7-ba4d-40cc-be9b-d1bda5309cf6",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: হাজেরা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "5ba192bc-f695-4db3-a0fb-ce501a73f1d9"
+          }
+        },
+        {
+          "id": "a62186d6-408b-4fdd-97f2-112cbe43a4ec",
+          "data": {
+            "gender": "F",
+            "name": "খাতুন",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "5ba192bc-f695-4db3-a0fb-ce501a73f1d9"
+          }
+        },
+        {
+          "id": "528e82d3-ceea-48c3-baa0-53e2650b3efa",
+          "data": {
+            "gender": "M",
+            "name": "মো: আরদোশ মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "টাঙ্গাইল",
+            "notes": ""
+          },
+          "rels": {
+            "father": "496de3d4-8ac7-4c68-a6d9-4fc8e682860d",
+            "children": [
+              "31f41c6f-77a7-481f-970e-60ed4e4719b1",
+              "8078eb23-a102-437c-a3f9-bfafac668fbe",
+              "888b967f-c3c6-4eca-a8ca-0f0b7e733842",
+              "88cde187-25a5-4f3b-b914-ffbe71c64275",
+              "79183fa5-93c8-436a-8dd9-92a8f85c731b"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "362036ef-40ab-4296-bd98-ac4b66350d4a",
+          "data": {
+            "gender": "M",
+            "name": "মো: পরশ মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "টাঙ্গাইল",
+            "notes": ""
+          },
+          "rels": {
+            "father": "496de3d4-8ac7-4c68-a6d9-4fc8e682860d",
+            "children": [
+              "ab2cf3e0-8150-4016-ab76-35e4787d0a7c",
+              "000a85e7-43af-4499-8847-c04e08f388e2",
+              "895813c2-a57d-4534-b7b2-539ad32b6fec",
+              "ebc1ee5b-87ea-4da7-876e-362a7bf9326f",
+              "9d868e16-8d9f-47e2-9f39-1f7515d018be"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "31f41c6f-77a7-481f-970e-60ed4e4719b1",
+          "data": {
+            "gender": "M",
+            "name": "মো: চান্দু মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "টাঙ্গাইল",
+            "notes": ""
+          },
+          "rels": {
+            "father": "528e82d3-ceea-48c3-baa0-53e2650b3efa"
+          }
+        },
+        {
+          "id": "8078eb23-a102-437c-a3f9-bfafac668fbe",
+          "data": {
+            "gender": "M",
+            "name": "মো: মান্নান মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "টাঙ্গাইল",
+            "notes": ""
+          },
+          "rels": {
+            "father": "528e82d3-ceea-48c3-baa0-53e2650b3efa"
+          }
+        },
+        {
+          "id": "888b967f-c3c6-4eca-a8ca-0f0b7e733842",
+          "data": {
+            "gender": "M",
+            "name": "মো: ইয়াকুব মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "528e82d3-ceea-48c3-baa0-53e2650b3efa"
+          }
+        },
+        {
+          "id": "88cde187-25a5-4f3b-b914-ffbe71c64275",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: সুরা খাতুন",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "টাঙ্গাইল",
+            "notes": ""
+          },
+          "rels": {
+            "father": "528e82d3-ceea-48c3-baa0-53e2650b3efa"
+          }
+        },
+        {
+          "id": "79183fa5-93c8-436a-8dd9-92a8f85c731b",
+          "data": {
+            "gender": "F",
+            "name": "অখাতুন",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "528e82d3-ceea-48c3-baa0-53e2650b3efa"
+          }
+        },
+        {
+          "id": "ab2cf3e0-8150-4016-ab76-35e4787d0a7c",
+          "data": {
+            "gender": "M",
+            "name": "মো: ইমান মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "362036ef-40ab-4296-bd98-ac4b66350d4a"
+          }
+        },
+        {
+          "id": "000a85e7-43af-4499-8847-c04e08f388e2",
+          "data": {
+            "gender": "M",
+            "name": "মো: হরমুজ মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "362036ef-40ab-4296-bd98-ac4b66350d4a"
+          }
+        },
+        {
+          "id": "895813c2-a57d-4534-b7b2-539ad32b6fec",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: বেলালী খাতুন",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "টাঙ্গাইল",
+            "notes": ""
+          },
+          "rels": {
+            "father": "362036ef-40ab-4296-bd98-ac4b66350d4a"
+          }
+        },
+        {
+          "id": "ebc1ee5b-87ea-4da7-876e-362a7bf9326f",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: তারা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "টাঙ্গাইল",
+            "notes": ""
+          },
+          "rels": {
+            "father": "362036ef-40ab-4296-bd98-ac4b66350d4a"
+          }
+        },
+        {
+          "id": "9d868e16-8d9f-47e2-9f39-1f7515d018be",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: ডালিমন বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "ভারত",
+            "notes": ""
+          },
+          "rels": {
+            "father": "362036ef-40ab-4296-bd98-ac4b66350d4a"
+          }
+        },
+        {
+          "id": "cb760f39-4832-47ac-b376-54df859bc6db",
+          "data": {
+            "gender": "M",
+            "name": "মো: রয়াত মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "14501f86-de3f-4770-889d-62890e633df1",
+            "children": [
+              "2b9de878-4b3a-4336-95fa-ff8189e05987",
+              "055a13b5-46e8-4ff5-b5f1-0e78b871b0e7",
+              "0e35a1dc-cb7e-4c5b-bf5f-b61a4dd2e6da",
+              "5d2dc8ef-c671-46bc-b34b-e914c1af48e3"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "2b9de878-4b3a-4336-95fa-ff8189e05987",
+          "data": {
+            "gender": "M",
+            "name": "মো: মোজাহার মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "cb760f39-4832-47ac-b376-54df859bc6db",
+            "children": [
+              "29000468-478f-46de-9d0d-96fca3b287cd",
+              "75d30524-39d3-45fb-a819-b49079426d30",
+              "969ca1db-d192-4558-b27c-3631316f37a3",
+              "795e14ac-63d0-4ab8-a3d0-3add626aa706",
+              "d4218c72-7d89-41c7-ba83-50c6319c6a92",
+              "60ee06e6-f41b-4c17-9209-5657144fd0de"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "055a13b5-46e8-4ff5-b5f1-0e78b871b0e7",
+          "data": {
+            "gender": "M",
+            "name": "মো: আবুল মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "cb760f39-4832-47ac-b376-54df859bc6db",
+            "children": [
+              "24c53f42-fc48-4e29-aefe-d07c7c5da68c"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "0e35a1dc-cb7e-4c5b-bf5f-b61a4dd2e6da",
+          "data": {
+            "gender": "M",
+            "name": "মো: সবুর উদ্দিন মন্ডল",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": "মেয়ে আছে , নাম অজানা"
+          },
+          "rels": {
+            "father": "cb760f39-4832-47ac-b376-54df859bc6db",
+            "children": [
+              "ba57a3ef-01ca-4017-8caf-aa49c194dc01",
+              "f66a926b-ba06-4b5f-93a8-053343128c09"
+            ],
+            "spouses": []
+          }
+        },
+        {
+          "id": "5d2dc8ef-c671-46bc-b34b-e914c1af48e3",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: রওশনারা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "cb760f39-4832-47ac-b376-54df859bc6db"
+          }
+        },
+        {
+          "id": "29000468-478f-46de-9d0d-96fca3b287cd",
+          "data": {
+            "gender": "M",
+            "name": "আব্দুল হক",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "2b9de878-4b3a-4336-95fa-ff8189e05987"
+          }
+        },
+        {
+          "id": "75d30524-39d3-45fb-a819-b49079426d30",
+          "data": {
+            "gender": "M",
+            "name": "মো: আনোয়ার হোসেন",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "2b9de878-4b3a-4336-95fa-ff8189e05987"
+          }
+        },
+        {
+          "id": "969ca1db-d192-4558-b27c-3631316f37a3",
+          "data": {
+            "gender": "M",
+            "name": "মো: তোফাজ্জল হোসেন",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "2b9de878-4b3a-4336-95fa-ff8189e05987"
+          }
+        },
+        {
+          "id": "795e14ac-63d0-4ab8-a3d0-3add626aa706",
+          "data": {
+            "gender": "M",
+            "name": "মো: সানোয়ার হোসেন",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "2b9de878-4b3a-4336-95fa-ff8189e05987"
+          }
+        },
+        {
+          "id": "d4218c72-7d89-41c7-ba83-50c6319c6a92",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: জুহুরা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "2b9de878-4b3a-4336-95fa-ff8189e05987"
+          }
+        },
+        {
+          "id": "60ee06e6-f41b-4c17-9209-5657144fd0de",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: রেজিয়া বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "2b9de878-4b3a-4336-95fa-ff8189e05987"
+          }
+        },
+        {
+          "id": "24c53f42-fc48-4e29-aefe-d07c7c5da68c",
+          "data": {
+            "gender": "F",
+            "name": "মোছা: সালেহা বেগম",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "055a13b5-46e8-4ff5-b5f1-0e78b871b0e7"
+          }
+        },
+        {
+          "id": "ba57a3ef-01ca-4017-8caf-aa49c194dc01",
+          "data": {
+            "gender": "M",
+            "name": "মো: হাফিজ উদ্দিন ",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "0e35a1dc-cb7e-4c5b-bf5f-b61a4dd2e6da"
+          }
+        },
+        {
+          "id": "f66a926b-ba06-4b5f-93a8-053343128c09",
+          "data": {
+            "gender": "M",
+            "name": "মো: আলাউদ্দিন",
+            "avatar": "",
+            "birth year": "",
+            "death year": "",
+            "occupation": "",
+            "phone": "",
+            "email": "",
+            "address": "",
+            "notes": ""
+          },
+          "rels": {
+            "father": "0e35a1dc-cb7e-4c5b-bf5f-b61a4dd2e6da"
+          }
+        }
+      ]
+    }
+
+  </script>
+</body>
+</html>
